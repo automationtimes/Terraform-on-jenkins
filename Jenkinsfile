@@ -21,8 +21,8 @@ pipeline {
     stages {
         stage('Plan') {
             steps {
-                sh  'terraform init ${environment}'
-                sh 'terraform plan -out tfplan ${environment}'
+                sh  'terraform init '
+                sh 'terraform plan -out tfplan '
                 sh 'show -no-color tfplan > tfplan.txt'
             }
         }
@@ -44,7 +44,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh 'terraform apply ${environment}'
+                sh 'terraform apply '
             }
         }
     }
