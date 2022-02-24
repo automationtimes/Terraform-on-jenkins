@@ -21,8 +21,8 @@ pipeline {
     stages {
         stage('Plan') {
             steps {
-                sh  '"cd Terraform-project && terraform init -input=false"'
-                sh '"cd Terraform-project && terraform plan -input=false -out tfplan"'
+                sh  '"cd Terraform-project && terraform init"'
+                sh '"cd Terraform-project && terraform plan -out tfplan"'
                 sh '"pwd && Terraform-project && show -no-color tfplan > tfplan.txt"'
             }
         }
