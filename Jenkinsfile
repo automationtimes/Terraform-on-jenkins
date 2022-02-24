@@ -1,11 +1,11 @@
 
 pipeline {
 
-    parameters {
-        // string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
-        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+    // parameters {
+    //     // string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
+    //     booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
 
-    }
+    // }
 
 
     //  environment {
@@ -26,21 +26,21 @@ pipeline {
                 sh 'tfplan > tfplan.txt'
             }
         }
-        stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: params.autoApprove
-               }
-           }
+    //     stage('Approval') {
+    //        when {
+    //            not {
+    //                equals expected: true, actual: params.autoApprove
+    //            }
+    //        }
 
-           steps {
-               script {
-                    def plan = readFile 'tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
-           }
-       }
+    //        steps {
+    //            script {
+    //                 def plan = readFile 'tfplan.txt'
+    //                 input message: "Do you want to apply the plan?",
+    //                 parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+    //            }
+    //        }
+    //    }
 
         stage('Apply') {
             steps {
