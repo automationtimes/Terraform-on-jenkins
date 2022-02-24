@@ -42,11 +42,11 @@ pipeline {
            }
        }
 
-        stage('Apply') {
-            steps {
-                sh '"pwd && cd Terraform-project && terraform apply -input=false tfplan"
-            }
-        }
+        // stage('Apply') {
+        //     steps {
+        //         sh '"pwd && cd Terraform-project && terraform apply -input=false tfplan"
+        //     }
+        // }
     }
 
   }
