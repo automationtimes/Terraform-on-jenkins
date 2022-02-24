@@ -24,7 +24,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/easyawslearn/Terraform-Tutorial.git"
+                            git "https://github.com/automationtimes/Terraform-on-jenkins"
                         }
                     }
                 }
@@ -32,11 +32,11 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform init -input=false'
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace new ${environment}'
-                sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace select ${environment}'
-                sh "pwd;cd terraform/aws-instance-first-script ;terraform plan -input=false -out tfplan "
-                sh 'pwd;cd terraform/aws-instance-first-script ;terraform show -no-color tfplan > tfplan.txt'
+                sh 'pwd;cd Terraform-on-jenkins ; terraform init -input=false'
+                sh 'pwd;cd Terraform-on-jenkins ; terraform workspace new ${environment}'
+                sh 'pwd;cd Terraform-on-jenkins ; terraform workspace select ${environment}'
+                sh "pwd;cd Terraform-on-jenkins ;terraform plan -input=false -out tfplan "
+                sh 'pwd;cd Terraform-on-jenkins ;terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
@@ -57,7 +57,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd terraform/aws-instance-first-script ; terraform apply -input=false tfplan"
+                sh "pwd;cd Terraform-on-jenkins ; terraform apply -input=false tfplan"
             }
         }
     }
