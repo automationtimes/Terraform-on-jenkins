@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh  'terraform init '
                 sh 'terraform plan -out tfplan  -lock=false'
-                sh 'show -no-color tfplan > tfplan.txt'
+                sh 'tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
